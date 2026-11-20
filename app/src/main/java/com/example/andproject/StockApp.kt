@@ -20,9 +20,14 @@ fun StockApp() {
         }
 
         composable("inventory") {
-            StockPage("Inventory", back) {
-                Text("Your products")
-            }
+            InventoryScreen(
+                products = listOf(
+                    Product("demo-1", "E88 Drone", 4),
+                    Product("demo-2", "Kettle", 2)
+                ),
+                onBack = back,
+                onOpen = {}
+            )
         }
 
         composable("add") {
