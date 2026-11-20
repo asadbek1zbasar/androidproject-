@@ -14,14 +14,14 @@ class MainActivity : ComponentActivity() {
         setContent {
             MaterialTheme {
                 Surface {
-                    StockPage(title = "Qoymaapp") {
-                        Text("Inventory manager")
-                    }
+                    StockApp()
+
                 }
             }
         }
     }
 }
+
 
 
 
