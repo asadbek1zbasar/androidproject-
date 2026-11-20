@@ -31,9 +31,7 @@ fun StockApp() {
         }
 
         composable("add") {
-            StockPage("Add product", back) {
-                Text("Product form")
-            }
+            AddProductScreen(onBack = back, onSave = { _, _ -> })
         }
     }
 }
