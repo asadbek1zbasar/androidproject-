@@ -13,14 +13,10 @@ fun StockApp() {
 
     NavHost(navController = nav, startDestination = "home") {
         composable("home") {
-            StockPage("Qoymaapp") {
-                Button(onClick = { nav.navigate("inventory") }) {
-                    Text("View inventory")
-                }
-                OutlinedButton(onClick = { nav.navigate("add") }) {
-                    Text("Add product")
-                }
-            }
+            HomeScreen(
+                onInventory = { nav.navigate("inventory") },
+                onAdd = { nav.navigate("add") }
+            )
         }
 
         composable("inventory") {
