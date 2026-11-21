@@ -11,6 +11,7 @@ data class Product(
         require(quantity >= 0)
     }
 }
+
 const val LOW_STOCK_LIMIT = 3
 
 val Product.isLowStock: Boolean
