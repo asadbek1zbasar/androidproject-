@@ -13,6 +13,7 @@ fun ProductDetails(
     StockPage("Product details", onBack) {
         Text(product.name, style = MaterialTheme.typography.titleLarge)
         Text("Units: ${product.quantity}")
+        Text(product.stockLabel, color = MaterialTheme.colorScheme.primary)
 
         Button(
             enabled = product.quantity > 0,
