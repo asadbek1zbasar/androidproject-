@@ -32,6 +32,17 @@ class InventoryRepository {
             }
         }
     }
+    fun restock(id: String) {
+        items.update { products ->
+            products.map { product ->
+                if (product.id == id && product.quantity < Int.MAX_VALUE) {
+                    product.copy(quantity = product.quantity + 1)
+                } else {
+                    product
+                }
+            }
+        }
+    }
 
 
 }

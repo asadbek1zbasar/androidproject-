@@ -11,4 +11,6 @@ class InventoryViewModel : ViewModel() {
         return repository.add(name, quantity)
     }
     fun sell(id: String) = repository.sell(id)
+
+    fun restock(id: String) = repository.restock(id)
 }
