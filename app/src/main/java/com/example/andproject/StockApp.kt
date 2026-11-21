@@ -32,7 +32,17 @@ fun StockApp(model: InventoryViewModel = viewModel()) {
         }
 
         composable("add") {
-            AddProductScreen(onBack = back, onSave = { _, _ -> })
+            AddProductScreen(
+                onBack = back,
+                onSave = { name, quantity ->
+                    if (model.add(name, quantity)) {
+                        nav.navigate("inventory") {
+                            popUpTo("home")
+                            launchSingleTop = true
+                        }
+                    }
+                }
+            )
         }
     }
 }
