@@ -21,4 +21,17 @@ class InventoryRepository {
         items.update { current -> current + product }
         return true
     }
+    fun sell(id: String) {
+        items.update { products ->
+            products.map { product ->
+                if (product.id == id && product.quantity > 0) {
+                    product.copy(quantity = product.quantity - 1)
+                } else {
+                    product
+                }
+            }
+        }
+    }
+
+
 }

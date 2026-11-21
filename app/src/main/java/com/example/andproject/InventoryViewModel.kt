@@ -10,4 +10,5 @@ class InventoryViewModel : ViewModel() {
     fun add(name: String, quantity: Int): Boolean {
         return repository.add(name, quantity)
     }
+    fun sell(id: String) = repository.sell(id)
 }
