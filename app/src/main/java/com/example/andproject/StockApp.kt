@@ -8,6 +8,8 @@ import androidx.navigation.compose.rememberNavController
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
 
 @Composable
 fun StockApp(model: InventoryViewModel = viewModel()) {
@@ -22,12 +24,23 @@ fun StockApp(model: InventoryViewModel = viewModel()) {
                 onAdd = { nav.navigate("add") }
             )
         }
+        composable(
+            route = "product/{id}",
+            arguments = listOf(navArgument("id") { type = NavType.StringType })
+        ) { entry ->
+            val id = entry.arguments?.getString("id")
+            val selected = products.find { it.id == id }
+
+            if (selected != null) {
+                ProductDetails(product = selected, onBack = back)
+            }
+        }
 
         composable("inventory") {
             InventoryScreen(
                 products = products,
                 onBack = back,
-                onOpen = {}
+                onOpen = { id -> nav.navigate("product/$id") }
             )
         }
 
