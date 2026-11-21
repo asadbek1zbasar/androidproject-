@@ -19,6 +19,7 @@ fun ProductRow(product: Product, onOpen: (String) -> Unit) {
         Column(Modifier.padding(16.dp)) {
             Text(product.name, style = MaterialTheme.typography.titleMedium)
             Text("Units: ${product.quantity}")
+            Text(product.stockLabel, color = MaterialTheme.colorScheme.primary)
         }
     }
 }
