@@ -32,7 +32,12 @@ fun StockApp(model: InventoryViewModel = viewModel()) {
             val selected = products.find { it.id == id }
 
             if (selected != null) {
-                ProductDetails(product = selected, onBack = back)
+                ProductDetails(
+                    product = selected,
+                    onBack = back,
+                    onSell = model::sell,
+                    onRestock = model::restock
+                )
             }
         }
 
