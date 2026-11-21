@@ -5,9 +5,13 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.compose.runtime.getValue
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
-fun StockApp() {
+fun StockApp(model: InventoryViewModel = viewModel()) {
+    val products by model.products.collectAsStateWithLifecycle()
     val nav = rememberNavController()
     val back: () -> Unit = { nav.popBackStack() }
 
@@ -21,10 +25,7 @@ fun StockApp() {
 
         composable("inventory") {
             InventoryScreen(
-                products = listOf(
-                    Product("demo-1", "E88 Drone", 4),
-                    Product("demo-2", "Kettle", 2)
-                ),
+                products = products,
                 onBack = back,
                 onOpen = {}
             )
