@@ -18,6 +18,8 @@ fun AddProductScreen(
 ) {
     var name by rememberSaveable { mutableStateOf("") }
     var quantity by rememberSaveable { mutableStateOf("") }
+    var attempted by rememberSaveable { mutableStateOf(false) }
+    val parsedQuantity = quantity.toIntOrNull()
 
     StockPage("Add product", onBack) {
         Column(
@@ -43,8 +45,22 @@ fun AddProductScreen(
                 singleLine = true
             )
 
+            if (attempted && name.isBlank()) {
+                Text("Enter a product name.", color = MaterialTheme.colorScheme.error)
+            }
+
+            if (attempted && (parsedQuantity == null || parsedQuantity < 0)) {
+                Text(
+                    "Enter a whole quantity of zero or more.",
+                    color = MaterialTheme.colorScheme.error
+                )
+            }
+
             Button(onClick = {
-                quantity.toIntOrNull()?.let { onSave(name, it) }
+                attempted = true
+                if (name.isNotBlank() && parsedQuantity != null && parsedQuantity >= 0) {
+                    onSave(name.trim(), parsedQuantity)
+                }
             }) {
                 Text("Save")
             }
