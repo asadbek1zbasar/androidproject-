@@ -5,9 +5,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
-fun HomeScreen(onInventory: () -> Unit, onAdd: () -> Unit) {
+fun HomeScreen(
+    summary: InventorySummary,
+    onInventory: () -> Unit,
+    onAdd: () -> Unit
+) {
     StockPage("Qoymaapp") {
-        Text("Inventory manager")
+        Text("Products: ${summary.totalProducts}")
+        Text("Low stock: ${summary.lowStockProducts}")
         Button(onClick = onInventory) { Text("View inventory") }
         OutlinedButton(onClick = onAdd) { Text("Add product") }
     }
@@ -17,6 +22,10 @@ fun HomeScreen(onInventory: () -> Unit, onAdd: () -> Unit) {
 @Composable
 private fun HomePreview() {
     MaterialTheme {
-        HomeScreen(onInventory = {}, onAdd = {})
+        HomeScreen(
+            summary = InventorySummary(2, 1),
+            onInventory = {},
+            onAdd = {}
+        )
     }
 }

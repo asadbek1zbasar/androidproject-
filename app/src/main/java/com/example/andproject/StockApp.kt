@@ -20,6 +20,7 @@ fun StockApp(model: InventoryViewModel = viewModel()) {
     NavHost(navController = nav, startDestination = "home") {
         composable("home") {
             HomeScreen(
+                summary = products.summary(),
                 onInventory = { nav.navigate("inventory") },
                 onAdd = { nav.navigate("add") }
             )
